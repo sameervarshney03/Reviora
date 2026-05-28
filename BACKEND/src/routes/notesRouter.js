@@ -1,10 +1,12 @@
 const express = require("express");
 const Notes = require("../models/notesSchema");
 const userAuth = require("../middleware/userAuth");
+const noteValidator = require("../validator/noteValidator");
 
 const notesRouter = express.Router();
 notesRouter.use("/notes", userAuth);
 
+// route to get all the notes
 notesRouter.get("/notes/view", async (req, res) => {
     try{
         const notes = await Notes.find({
@@ -18,8 +20,12 @@ notesRouter.get("/notes/view", async (req, res) => {
     }
 });
 
+// route to add the note
 notesRouter.post("/notes/add", async (req, res) => {
     try{
+
+        noteValidator(req.body);
+
         const {title, description} = req.body;
         const _id = req.user._id;
 
@@ -38,6 +44,7 @@ notesRouter.post("/notes/add", async (req, res) => {
     }
 });
 
+// route to update the note
 notesRouter.patch("/notes/:noteId", async (req, res) => {
 
     try{

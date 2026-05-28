@@ -8,6 +8,7 @@ require("dotenv").config();
 
 const authRouter = express.Router();
 
+// signup route
 authRouter.post("/signup", async (req, res) => {
     try{
         // validation logic as follow
@@ -27,15 +28,15 @@ authRouter.post("/signup", async (req, res) => {
         })
 
         await user.save();
-        res.send("user saved successfully!");
+        res.send("User saved successfully!");
 
     }
     catch(err){
-        res.status(400).send("error signing up" + err.message);
+        res.status(400).send("Error signing up: " + err.message);
     }
 });
 
-
+// login route
 authRouter.post("/login", async (req, res) => {
     try{
         const {emailId, password} = req.body;
@@ -43,13 +44,13 @@ authRouter.post("/login", async (req, res) => {
         const user = await User.findOne({emailId:emailId});
 
         if(!user){
-            throw new Error("invalid credentials");
+            throw new Error("Invalid credentials!");
         }
 
         const isValidPassword = await bcrypt.compare(password, user.password);
 
         if(!isValidPassword){
-            throw new Error("invalid credentials");
+            throw new Error("Invalid credentials!");
         }
 
         const token = jwt.sign({_id:user._id}, process.env.JWT_SECRET, {expiresIn: "7d"});
@@ -59,25 +60,24 @@ authRouter.post("/login", async (req, res) => {
             secure: false,
             sameSite: "strict"
         });
-        res.send("user logged in successfully!");
+        res.send("User logged in successfully!");
     }
     catch(err){ 
-        res.status(400).send("error logging in the user: "+ err.message);
+        res.status(400).send("Error logging in the user: "+ err.message);
     }
 });
 
 
-// here is the logout logic
+// logout route
 authRouter.post("/logout", async (req, res) => {
     try{
         res.cookie("token", null, {expires: new Date(Date.now())});
-        res.send("user logged out successfully!")
+        res.send("User logged out successfully!")
     }
     catch(err){
-        res.status(400).send("error logging out: " + err.message);
+        res.status(400).send("Error logging out: " + err.message);
     }
 });
 
 
-module.exports = authRouter
-
+module.exports = authRouter;

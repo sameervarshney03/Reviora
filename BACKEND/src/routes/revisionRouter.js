@@ -8,6 +8,7 @@ const revisionRouter = express.Router();
 
 revisionRouter.use("/revision", userAuth);
 
+// route to get the revision data
 revisionRouter.get("/revision", async (req, res) => {
     try{
 
@@ -53,10 +54,11 @@ revisionRouter.get("/revision", async (req, res) => {
         res.send(reqMaterial);
     }
     catch(err){
-        res.status(400).send("Error getting the data" + err.message);
+        res.status(400).send("Error getting the data: " + err.message);
     }
 });
 
+// router to add the revision data
 revisionRouter.post("/revision", async(req, res) => {
     try{
         const userId = req.user._id;
@@ -69,13 +71,14 @@ revisionRouter.post("/revision", async(req, res) => {
 
         await revi.save();
 
-        res.send("Materail saved successfully");
+        res.send("Material saved successfully!");
     }
     catch(err){
-        res.status(400).send("Error saving the material" + err.message);
+        res.status(400).send("Error saving the material: " + err.message);
     }
 });
 
+// route to update the gap system
 revisionRouter.patch("/revision/gapchange", async(req, res) => {
     try{
         const isUpdateAllowed = Object.keys(req.body).every((k) => k === "gaps");
@@ -91,9 +94,9 @@ revisionRouter.patch("/revision/gapchange", async(req, res) => {
         }, req.body);
 
 
-        res.send("Gap change updated successfully");
+        res.send("Gap change updated successfully!");
     }
     catch(err){
-        res.status(400).send("Error updating the gap" + err.message);
+        res.status(400).send("Error updating the gap: " + err.message);
     } 
 });
