@@ -11,7 +11,8 @@ const revisionSchema = new mongoose.Schema({
 
     material: {
         type: String,
-        required: true
+        required: true,
+        maxLength: 5000
     }
 },
 {

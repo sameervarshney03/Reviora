@@ -10,12 +10,14 @@ const notesSchema = new mongoose.Schema({
 
     title: {
         type: String,
-        required: true
+        required: true,
+        maxLength: 100
     },
 
     description: {
         type: String,
-        required: true
+        required: true,
+        maxLength: 2000
     }
 
 },

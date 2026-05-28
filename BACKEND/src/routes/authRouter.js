@@ -2,13 +2,16 @@ const express = require("express");
 const User = require("../models/userSchema");
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
+const authValidator = require("../validator/authValidator");
 require("dotenv").config();
+
 
 const authRouter = express.Router();
 
 authRouter.post("/signup", async (req, res) => {
     try{
-        // validation logic to be added here
+        // validation logic as follow
+        authValidator(req.body);
 
         const {firstName, lastName, emailId, password} = req.body;
 
