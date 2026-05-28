@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+
 const revisionSchema = new mongoose.Schema({
 
     userId: {
@@ -11,13 +12,7 @@ const revisionSchema = new mongoose.Schema({
     material: {
         type: String,
         required: true
-    },
-
-    studiedDate: {
-        type: Date,
-        required: true
     }
-
 },
 {
     timestamps: true
