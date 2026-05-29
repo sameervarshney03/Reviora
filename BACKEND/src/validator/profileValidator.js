@@ -12,4 +12,6 @@ const profileValidator = (data) => {
     if(!firstName.trim() || !lastName.trim()){
         throw new Error("Invalid Name!");
     }
-}
+};
+
+module.exports = profileValidator;

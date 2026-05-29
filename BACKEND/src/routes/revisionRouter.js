@@ -100,3 +100,6 @@ revisionRouter.patch("/revision/gapchange", async(req, res) => {
         res.status(400).send("Error updating the gap: " + err.message);
     } 
 });
+
+
+module.exports = revisionRouter;

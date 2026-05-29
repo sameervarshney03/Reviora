@@ -8,4 +8,6 @@ const noteValidator = (data) => {
     if(description.length > 2000){
         throw new Error("Description too long!");
     }
-}
+};
+
+module.exports = noteValidator;

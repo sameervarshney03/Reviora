@@ -21,4 +21,6 @@ const authValidator = (data) => {
     if(firstName.length < 2 || lastName.length < 2){
         throw new Error("Lack Minimum Length!");
     }
-}
+};
+
+module.exports = authValidator
