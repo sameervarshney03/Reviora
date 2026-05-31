@@ -16,7 +16,7 @@ notesRouter.get("/notes/view", async (req, res) => {
         res.send(notes);
     }
     catch(err){
-        res.status(400).send("error getting the notes" + err.message);
+        res.status(400).send("Error getting the notes: " + err.message);
     }
 });
 
@@ -40,7 +40,7 @@ notesRouter.post("/notes/add", async (req, res) => {
         res.send("Note saved successfully!");
     }
     catch(err){
-        res.status(400).send("Error saving the notes" + err.message);
+        res.status(400).send("Error saving the notes: " + err.message);
     }
 });
 
@@ -51,7 +51,7 @@ notesRouter.patch("/notes/:noteId", async (req, res) => {
         const {noteId} = req.params;
 
         if(!noteId){
-            throw new Error("Note not found");
+            throw new Error("Note not found!");
         }
 
         const allowedUpdates = ["title", "description"];
@@ -59,7 +59,7 @@ notesRouter.patch("/notes/:noteId", async (req, res) => {
         const isUpdateAllowed = Object.keys(req.body).every((k) => allowedUpdates.includes(k));
 
         if(!isUpdateAllowed){
-            throw new Error("Update not allowed");
+            throw new Error("Update not allowed!");
         }
 
         await Notes.findOneAndUpdate(
@@ -70,10 +70,10 @@ notesRouter.patch("/notes/:noteId", async (req, res) => {
         req.body
         );
 
-        res.send("Note updated successfully");
+        res.send("Note updated successfully!");
     }
     catch(err){
-        res.status(400).send("Error adding the note" + err.message);
+        res.status(400).send("Error adding the note: " + err.message);
     }
     
 });
@@ -84,7 +84,7 @@ notesRouter.delete("/notes/:noteId", async (req, res) => {
         const {noteId} = req.params;
 
         if(!noteId){
-            throw new Error("Note not found");
+            throw new Error("Note not found!");
         }
 
         await Notes.findOneAndDelete({
@@ -92,10 +92,10 @@ notesRouter.delete("/notes/:noteId", async (req, res) => {
             userId: req.user._id
         });
 
-        res.send("Note deleted successfully");
+        res.send("Note deleted successfully!");
     }
     catch(err){
-        res.status(400).send("Error deleting the note" + err.message);
+        res.status(400).send("Error deleting the note: " + err.message);
     }
 
 });

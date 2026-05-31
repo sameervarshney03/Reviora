@@ -1,7 +1,6 @@
 const authValidator = (data) => {
     const {firstName, lastName, emailId, password} = data;
 
-    // requied field validation
     if(!firstName || !lastName || !emailId || !password){
         throw new Error("All field required!");
     }

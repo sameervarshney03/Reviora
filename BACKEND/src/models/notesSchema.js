@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+
+// schema for notes data
 const notesSchema = new mongoose.Schema({
 
     userId: {

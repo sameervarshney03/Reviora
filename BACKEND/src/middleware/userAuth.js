@@ -9,7 +9,7 @@ const userAuth = async (req, res, next) => {
         const {token} = req.cookies;
 
         if(!token){
-            throw new Error("No token found");
+            throw new Error("No token found!");
         }
 
         const decObj = jwt.verify(token, process.env.JWT_SECRET);
@@ -19,7 +19,7 @@ const userAuth = async (req, res, next) => {
         const user = await User.findById(_id);
 
         if(!user){
-            throw new Error("No User found");
+            throw new Error("No User found!");
         }
 
         req.user = user;

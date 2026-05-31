@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-
+// schema for revision data
 const revisionSchema = new mongoose.Schema({
 
     userId: {

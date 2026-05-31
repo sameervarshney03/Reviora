@@ -1,0 +1,32 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "\"Frontend for Reviora\"",
+  "keywords": [
+    "frontend",
+    "reviora"
+  ],
+  "homepage": "https://github.com/gauravpurohit685/Reviora#readme",
+  "bugs": {
+    "url": "https://github.com/gauravpurohit685/Reviora/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gauravpurohit685/Reviora.git"
+  },
+  "license": "ISC",
+  "author": "Gaurav Purohit",
+  "type": "commonjs",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.3.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "tailwindcss": "^4.3.0"
+  }
+}
