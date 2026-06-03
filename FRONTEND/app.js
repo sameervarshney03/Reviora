@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import HeaderComponent from "./src/components/HeaderComponent";
 import userContext from "./src/context/userContext";
 import AppShimmer from "./src/shimmer/AppShimmer";
+import HeroComponent from "./src/components/HeroComponent";
 
 // This is the main component
 const App = () => {
@@ -48,7 +49,6 @@ const App = () => {
     }
     
 
-
     if(loadState){
         return (
             <AppShimmer />
@@ -75,7 +75,10 @@ const appRouter = createBrowserRouter([
         path: "/",
         element: <App />,
         children: [
-            
+            {
+                path: "/",
+                element: <HeroComponent />
+            }
         ]
     }
 ])

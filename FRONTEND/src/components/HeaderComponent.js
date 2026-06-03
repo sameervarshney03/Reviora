@@ -1,11 +1,11 @@
-//Import from libraries
+// Import from libraries
 import { useContext, useState } from "react";
-import userContext from "../context/userContext";
 import {LuSun, LuMoon} from "react-icons/lu";
 
 
 // Internal Imports
 import changeTheme from "../hook/changeTheme";
+import userContext from "../context/userContext";
 
 
 const HeaderComponent = () => {
@@ -14,7 +14,7 @@ const HeaderComponent = () => {
     const {isUserLoggedIn} = useContext(userContext);
     const [theme, setTheme] = useState("dark");
 
-    const alterTheme = () => {
+    const toogleTheme = () => {
         changeTheme(theme, setTheme);
     }
 
@@ -28,7 +28,7 @@ const HeaderComponent = () => {
                 </div>
                 <div className="navbar-end">
                     
-                    <button className="mr-4 cursor-pointer" onClick = {alterTheme}>
+                    <button className="mr-4 cursor-pointer" onClick = {toogleTheme}>
                         {
                             theme === "light"?
                             <LuSun size={25} className="hover:text-info-content"/>:
