@@ -1,24 +1,24 @@
 // Imports from libraries
 import { useState } from "react";
 import { useContext } from "react";
-import userContext from "../context/userContext";
 import { useNavigate } from "react-router-dom";
 
 // Internal imports
 import login from "../util/login";
+import userContext from "../context/userContext";
 
 const LoginComponent = () => {
 
     // use of the hooks..
     const [isLoginSuccessful, setIsLoginSuccessful] = useState(true);
-    const [email, setEmail] = useState("");
+    const [emailId, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const {setIsAuthenticated} = useContext(userContext);
     const navigate = useNavigate();
 
 
     const loginHandler = () => {
-        login(setIsLoginSuccessful, setIsAuthenticated, email, password, navigate);
+        login(emailId, password, setIsAuthenticated, navigate, setIsLoginSuccessful);
     }
 
     return (

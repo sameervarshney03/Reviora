@@ -13,10 +13,12 @@ notesRouter.get("/notes/view", async (req, res) => {
             userId: req.user._id
         }).sort({ createdAt: -1 });
 
-        res.send(notes);
+        res.json({notes});
     }
     catch(err){
-        res.status(400).send("Error getting the notes: " + err.message);
+        res.status(400).json(
+            {message: "Error getting the notes: " + err.message}
+        );
     }
 });
 
@@ -37,10 +39,14 @@ notesRouter.post("/notes/add", async (req, res) => {
 
         await note.save();
 
-        res.send("Note saved successfully!");
+        res.json({
+            message: "Notes saved successfully!"
+        });
     }
     catch(err){
-        res.status(400).send("Error saving the notes: " + err.message);
+        res.status(400).json({
+            message: "Error saving the notes: " + err.message
+        });
     }
 });
 
@@ -70,10 +76,14 @@ notesRouter.patch("/notes/:noteId", async (req, res) => {
         req.body
         );
 
-        res.send("Note updated successfully!");
+        res.json({
+            message: "Notes updated successfully!"
+        })
     }
     catch(err){
-        res.status(400).send("Error adding the note: " + err.message);
+        res.status(400).json({
+            message: "Error adding the note: " + err.message
+        });
     }
     
 });

@@ -1,8 +1,8 @@
-const login = async (setIsLoginSuccessful, setIsAuthenticated, email, password, navigate) => {
+const login = async (emailId , password, setIsAuthenticated, navigate, setIsLoginSuccessful) => {
 
   try{
 
-    if(!email || !password){
+    if(!emailId || !password){
         setIsLoginSuccessful(false);
         throw new Error("Email and password cannot be empty!");
     }
@@ -16,7 +16,7 @@ const login = async (setIsLoginSuccessful, setIsAuthenticated, email, password, 
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                emailId: email,
+                emailId,
                 password
             })
         }
@@ -26,7 +26,10 @@ const login = async (setIsLoginSuccessful, setIsAuthenticated, email, password, 
         throw new Error("Invalid credentials!");
     }
 
-    setIsLoginSuccessful(true);
+    if(setIsLoginSuccessful){
+        setIsLoginSuccessful(true);
+    }
+    
     setIsAuthenticated(true);
     navigate("/");
 
@@ -34,7 +37,9 @@ const login = async (setIsLoginSuccessful, setIsAuthenticated, email, password, 
 
   catch(err){
         console.log(err.message);
-        setIsLoginSuccessful(false);
+        if(setIsLoginSuccessful){
+            setIsLoginSuccessful(false);
+        }
   }
 
 }

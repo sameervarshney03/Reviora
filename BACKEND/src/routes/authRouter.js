@@ -36,11 +36,15 @@ authRouter.post("/signup", async (req, res) => {
         });
         await gaps.save();
 
-        res.send("User registered successfully!");
+        res.json({
+            message: "User registered successfully!"
+        })
 
     }
     catch(err){
-        res.status(400).send("Error signing up: " + err.message);
+        res.status(400).json({
+            message: "Error signing up" + err.message
+        })
     }
 });
 
@@ -70,10 +74,14 @@ authRouter.post("/login", async (req, res) => {
             secure: false,
             sameSite: "strict"
         });
-        res.send("User logged in successfully!");
+        res.json({
+            message: "User logged in successfully!"
+        });
     }
     catch(err){ 
-        res.status(400).send("Error logging in the user: "+ err.message);
+        res.status(400).json({
+            message: "Error logging in" + err.message
+        });
     }
 });
 
@@ -82,17 +90,21 @@ authRouter.post("/login", async (req, res) => {
 authRouter.post("/logout", async (req, res) => {
     try{
         res.cookie("token", null, {expires: new Date(Date.now())});
-        res.send("User logged out successfully!")
+        res.json({
+            message: "User logged out successfully!" + err.message
+        });
     }
     catch(err){
-        res.status(400).send("Error logging out: " + err.message);
+        res.status(400).json({
+            message: "Error logging out" + err.message
+        });
     }
 });
 
 
 //verfication route
 authRouter.get("/verify", userAuth, async (req, res) => {
-    res.status(200).send({
+    res.status(200).json({
         success: true,
         message: "User perfectly authorized!"
     })

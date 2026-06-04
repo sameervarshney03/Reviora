@@ -14,11 +14,11 @@ const authValidator = (data) => {
     }
 
     if(firstName.length > 50 || lastName.length > 50){
-        throw new Error("Exceeded Maximum length!");
+        throw new Error("Exceeded Maximum Name length!");
     }
 
     if(firstName.length < 2 || lastName.length < 2){
-        throw new Error("Lack Minimum Length!");
+        throw new Error("Lack Minimum Name Length!");
     }
 };
 

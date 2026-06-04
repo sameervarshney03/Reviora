@@ -12,10 +12,12 @@ profileRouter.get("/profile/view", async (req, res) =>{
         try{    
             const {firstName, lastName, emailId} = req.user;
 
-            res.send({firstName, lastName, emailId});
+            res.json({firstName, lastName, emailId});
         }
         catch(err){
-            res.status(400).send("Error getting the profile: " + err.message);
+            res.status(400).json({
+                message: "Error getting the profile: " + err.message
+            });
         }
     }
 );
@@ -33,11 +35,15 @@ profileRouter.patch("/profile/edit", async (req, res) => {
         profileValidator(req.body);
 
         await User.findByIdAndUpdate(req.user._id, req.body);
-        res.send("Data updated successfully!");
+        res.json({
+            message: "Data updated successfully!"
+        });
 
     }
     catch(err){
-        res.status(400).send("Error updating the user: " + err.message);
+        res.status(400).send({
+            message: "Error updating the user: " + err.message
+        });
     }
 });
 

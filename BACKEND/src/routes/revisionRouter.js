@@ -51,12 +51,16 @@ revisionRouter.get("/revision", async (req, res) => {
             })
         );
 
-        res.send(reqMaterial);
+        res.json({reqMaterial});
     }
     catch(err){
-        res.status(400).send("Error getting the data: " + err.message);
+        res.status(400).json({
+            message: "Error getting the data: " + err.message
+        });
     }
 });
+
+
 
 // router to add the revision data
 revisionRouter.post("/revision", async(req, res) => {
@@ -71,10 +75,14 @@ revisionRouter.post("/revision", async(req, res) => {
 
         await revi.save();
 
-        res.send("Material saved successfully!");
+        res.json({
+            message: "Material saved successfully!"
+        });
     }
     catch(err){
-        res.status(400).send("Error saving the material: " + err.message);
+        res.status(400).json({
+            message: "Error saving the material: " + err.message
+        });
     }
 });
 
@@ -94,10 +102,14 @@ revisionRouter.patch("/revision/gapchange", async(req, res) => {
         }, req.body);
 
 
-        res.send("Gap change updated successfully!");
+        res.send({
+            message: "Gap change updated successfully!"
+        });
     }
     catch(err){
-        res.status(400).send("Error updating the gap: " + err.message);
+        res.status(400).send({
+            message: "Error updating the gap: " + err.message
+        });
     } 
 });
 
