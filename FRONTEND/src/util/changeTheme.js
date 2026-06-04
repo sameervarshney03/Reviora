@@ -1,4 +1,4 @@
-const usechangeTheme = (theme, setTheme) => {
+const changeTheme = (theme, setTheme) => {
     const newTheme = theme === "light"? "dark": "light";
 
     setTheme(newTheme);
@@ -9,4 +9,4 @@ const usechangeTheme = (theme, setTheme) => {
     );
 }
 
-export default usechangeTheme;
+export default changeTheme;
