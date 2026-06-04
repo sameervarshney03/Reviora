@@ -1,6 +1,9 @@
 BACKEND/node_modules/
 BACKEND/.env
+BACKEND/bugs.md
+
 FRONTEND/.env
 FRONTEND/node_modules/
 FRONTEND/.parcel-cache/
 FRONTEND/dist/
+FRONTEND/bugs.md
