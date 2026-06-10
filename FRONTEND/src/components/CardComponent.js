@@ -1,3 +1,5 @@
+// This is the component to display the card infomation in the notes page.
+
 const CardComponent = (props) => {
 
     const {data} = props

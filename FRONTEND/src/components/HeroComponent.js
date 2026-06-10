@@ -4,19 +4,27 @@ import {Link} from "react-router-dom";
 
 // Internal imports
 import userContext from "../context/userContext";
+import FeatureSection from "./FeatureSection";
 
 
 const HeroComponent = () => {
 
-    const {isUserLoggedIn} = useContext(userContext);
+    const user = useContext(userContext);
+
+    if(!user){
+        return null;
+    }
+
+    const {isUserLoggedIn} = user;
 
     return (
         <div>
-            {/* This is from the hero section of daisyUI */}
+            {/*Hero section as the landing section*/}
             <div className="hero bg-base-200 min-h-screen">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <img
                     src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
+                    alt="Reviora Hero"
                     className="max-w-sm rounded-lg shadow-2xl"
                     />
                     <div>
@@ -30,14 +38,14 @@ const HeroComponent = () => {
 
                         (
                             <>   
-                                <button className="btn btn-accent mr-2">Notes</button>
-                                <button className="btn btn-accent ml-2">Revision</button>
+                                <Link to="/notes" className="btn btn-accent mr-2">Notes</Link>
+                                <Link to="/revision" className="btn btn-accent ml-2">Revision</Link>
                             </> 
                         ):
                         (
                             <>
-                                <Link to= "/login"><button className="btn btn-accent mr-2">SignUp</button></Link>
-                                <Link to= "/signup"><button className="btn btn-accent ml-2">Login</button></Link>
+                                <Link to= "/signup" className="btn btn-accent mr-2">SignUp</Link>
+                                <Link to= "/login" className="btn btn-accent ml-2">Login</Link>
                             </>
                         )
                     }
@@ -45,55 +53,25 @@ const HeroComponent = () => {
                 </div>
             </div>
 
-            {/* This div is self created */}
+            {/*Feature Section Heading*/}
             <div className="bg-base-100 py-12">
                 <h2 className="text-4xl font-bold text-center">
                     See Reviora In Action
                 </h2>
             </div>
             
-            {/* Hero section from DaisyUI */}
-            <div className="hero bg-base-200">
-                    <div className="hero-content flex-col lg:flex-row">
-                        <img
-                        src="https://tse3.mm.bing.net/th/id/OIP.BrRuH4bTHNt9xF6Z13hKAwHaDt?rs=1&pid=ImgDetMain&o=7&rm=3"
-                        className="w-full max-w-3xl rounded-xl shadow-2xl"
-                        />
-                        <div>
-                        <h1 className="text-5xl font-bold">Box Office News!</h1>
-                        <p className="py-6">
-                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                            quasi. In deleniti eaque aut repudiandae et a id nisi.
-                        </p>
-                        </div>
-                    </div>
-                </div>
+            <FeatureSection src = "https://tse3.mm.bing.net/th/id/OIP.BrRuH4bTHNt9xF6Z13hKAwHaDt?rs=1&pid=ImgDetMain&o=7&rm=3" alt = "Notes Component" title = "Notes" description = "The is the description of the notes component" reverse = {false}/>
             
-            {/* Hero section from DaisyUI */}
-            <div className="hero bg-base-200">
-                    <div className="hero-content flex-col lg:flex-row-reverse">
-                        <img
-                        src="https://tse3.mm.bing.net/th/id/OIP.BrRuH4bTHNt9xF6Z13hKAwHaDt?rs=1&pid=ImgDetMain&o=7&rm=3"
-                        className="w-full max-w-3xl rounded-xl shadow-2xl"
-                        />
-                        <div>
-                        <h1 className="text-5xl font-bold">Box Office News!</h1>
-                        <p className="py-6">
-                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                            quasi. In deleniti eaque aut repudiandae et a id nisi.
-                        </p>
-                        </div>
-                    </div>
-            </div>
+            <FeatureSection src = "https://tse3.mm.bing.net/th/id/OIP.BrRuH4bTHNt9xF6Z13hKAwHaDt?rs=1&pid=ImgDetMain&o=7&rm=3" alt = "Revision Component" title = "Revision" description = "The is the description of the revision component" reverse = {true}/>
             
-            {/* This div is created by myself */}
+            {/*Heading to tell the working of hero section*/}
             <div className="bg-base-100 py-12">
                 <h2 className="text-4xl font-bold text-center">
                     How Reviora Works
                 </h2>
             </div>
             
-            {/* This is the step from DaisyUI */}
+            {/*How to use section*/}
             <div className="flex justify-center bg-base-200 p-16">
                 <ul className="steps steps-vertical">
                     <li className="step step-primary">Create Notes</li>
@@ -103,7 +81,7 @@ const HeroComponent = () => {
                 </ul>
             </div>
 
-           {/* Footer from DaisyUI */}
+           {/* Footer Section */}
             <footer className="footer sm:footer-horizontal footer-center bg-base-300 text-base-content p-4">
             <div className="text-xl italic max-w-2xl text-center">
                 Knowledge is not built when you learn. It is built when you remember.

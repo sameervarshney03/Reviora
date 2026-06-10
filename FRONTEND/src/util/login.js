@@ -1,13 +1,21 @@
 
 // Utility function to handle the login
 
-const login = async (emailId , password, setIsAuthenticated, navigate, setIsLoginSuccessful) => {
+const login = async ({emailId , password, setIsAuthenticated, navigate, setIsLoginSuccessful, setErrorMessage, setIsLoading}) => {
 
   try{
 
     if(!emailId || !password){
-        setIsLoginSuccessful(false);
-        throw new Error("Email and password cannot be empty!");
+        if(setIsLoginSuccessful){
+            setIsLoginSuccessful(false);
+        }
+        if(setErrorMessage){
+            setErrorMessage("EmailId or password cannot be empty!");
+        }
+        if(setIsLoading){
+            setIsLoading(false);
+        }
+        return;
     }
 
     console.log(process.env.LOGIN_API);
@@ -26,7 +34,17 @@ const login = async (emailId , password, setIsAuthenticated, navigate, setIsLogi
     );
 
     if(!res.ok){
-        throw new Error("Invalid credentials!");
+        if(setIsLoginSuccessful){
+            setIsLoginSuccessful(false);
+        }
+        if(setErrorMessage){
+            setErrorMessage("Invalid Credentials!");
+        }
+        if(setIsLoading){
+            setIsLoading(false);
+        }
+
+        return;
     }
 
     if(setIsLoginSuccessful){
@@ -34,6 +52,10 @@ const login = async (emailId , password, setIsAuthenticated, navigate, setIsLogi
     }
     
     setIsAuthenticated(true);
+    if(setIsLoading){
+        setIsLoading(false);
+    }
+    
     navigate("/");
 
   }  
@@ -42,6 +64,12 @@ const login = async (emailId , password, setIsAuthenticated, navigate, setIsLogi
         console.log(err.message);
         if(setIsLoginSuccessful){
             setIsLoginSuccessful(false);
+        }
+        if(setErrorMessage){
+            setErrorMessage("Unable to connect to the network!");
+        }
+        if(setIsLoading){
+            setIsLoading(false);
         }
   }
 

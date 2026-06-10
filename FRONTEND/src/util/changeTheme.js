@@ -5,10 +5,7 @@ const changeTheme = (theme, setTheme) => {
 
     setTheme(newTheme);
 
-    document.documentElement.setAttribute(
-        "data-theme",
-        newTheme
-    );
+    localStorage.setItem("theme", newTheme);
 }
 
 export default changeTheme;

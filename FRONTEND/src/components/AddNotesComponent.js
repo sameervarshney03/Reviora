@@ -1,11 +1,18 @@
-import { useState } from "react"
-import { LuHandPlatter } from "react-icons/lu";
+// Imports from libraries
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+// Interanl imports
+import notesPostPatch from "../util/notesPostPatch";
 
 const AddNotesComponent = () => {
 
     const [titleState, setTitleState] = useState("");
     const [descriptionState, setDescriptionState] = useState("");
+    const [isError, setIsError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleTitle = (e) => {
         setTitleState(e.target.value);
@@ -15,6 +22,12 @@ const AddNotesComponent = () => {
         setDescriptionState(e.target.value);
     }
 
+    const handleNotesAdd = () => {
+        const API = process.env.POSTNOTES_API;
+        const mtod = "POST";
+        setIsLoading(true);
+        notesPostPatch({titleState, descriptionState, setIsError, setErrorMessage, navigate, API, mtod, setIsLoading});
+    }
     return (
         <div>
             <div className="navbar bg-transparent">
@@ -22,7 +35,13 @@ const AddNotesComponent = () => {
                     <></>
                 </div>
                 <div className="navbar-end">
-                    <button className="btn btn-ghost text-xl">Save</button>
+                    <button className="btn btn-ghost text-xl" onClick={handleNotesAdd} disabled = {isLoading}>
+                        {
+                            isLoading?
+                            "Saving...":
+                            "Save"
+                        }
+                    </button>
                 </div>
             </div>
             <div className="mt-8 px-16 text-base-content">
@@ -36,12 +55,21 @@ const AddNotesComponent = () => {
                     <p className="mb-2 text-2xl">
                         Description:
                     </p>
-                    <p className="leading-loose">
+                    <div className="leading-loose">
                     <textarea value={descriptionState} className="w-full bg-transparent h-128 resize-none border border-base-content rounded-sm p-2" onChange={handleDescription}/>
-                    </p>
+                    </div>
                 </div>
             </div>
-
+            {
+                isError?
+                (<p className="text-center text-error">
+                    {errorMessage}
+                </p>):
+                (
+                    <>
+                    </>
+                )
+            }
         </div>
     )
 }

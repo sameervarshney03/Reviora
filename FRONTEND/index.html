@@ -9,6 +9,15 @@
   <body>
     <div id="root"></div>
 
+    <script>
+        const theme =
+            localStorage.getItem("theme") || "dark";
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            theme
+        );
+    </script>
     <script type="module" src="app.js"></script>
   </body>
 </html>

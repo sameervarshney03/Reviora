@@ -1,9 +1,13 @@
 // Imports from libraries
 import { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // Interanl imports
 import notesContext from "../context/notesContext";
+import notesPostPatch from "../util/notesPostPatch";
+import notesDelete from "../util/notesDelete";
+
 const NotesInfoComponent = () => {
 
     const {notes} = useContext(notesContext);
@@ -18,6 +22,9 @@ const NotesInfoComponent = () => {
 
     const [titleState, setTitleState] = useState(title);
     const [descriptionState, setDescriptionState] = useState(description);
+    const [isError, setIsError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const navigate = useNavigate();
 
     const handleTitle = (e) => {
         setTitleState(e.target.value);
@@ -27,6 +34,22 @@ const NotesInfoComponent = () => {
         setDescriptionState(e.target.value);
     }
 
+    const handleSave = () => {
+        const API = process.env.PATCHNOTES_API + `${notesId}`;
+        const mtod = "PATCH";
+
+        console.log(API);
+        console.log(mtod);
+
+        notesPostPatch({titleState, descriptionState, setIsError, setErrorMessage, navigate, API, mtod});
+    }
+
+    const handleDelete = () => {
+        const API = process.env.DELETENOTES_API + `${notesId}`;
+
+        notesDelete({API, setIsError, setErrorMessage, navigate});
+    }
+
     return (
         <div>
             <div className="navbar bg-transparent">
@@ -34,7 +57,8 @@ const NotesInfoComponent = () => {
                     <></>
                 </div>
                 <div className="navbar-end">
-                    <button className="btn btn-ghost text-xl">Save</button>
+                    <button className="btn btn-ghost text-xl" onClick={handleSave}>Save</button>
+                    <button className="btn btn-ghost text-xl" onClick={handleDelete}>Delete</button>
                 </div>
             </div>
             <div className="mt-8 px-16 text-base-content">
@@ -58,6 +82,17 @@ const NotesInfoComponent = () => {
                     </p>
                 </div>
             </div>
+
+            {
+                isError?
+                (<p>
+                    {errorMessage}
+                </p>):
+                (
+                    <>
+                    </>
+                )
+            }
 
         </div>
     )

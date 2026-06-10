@@ -1,5 +1,5 @@
 // Import from libraries
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect} from "react";
 import {LuSun, LuMoon} from "react-icons/lu";
 import {Link} from "react-router-dom";
 
@@ -12,38 +12,48 @@ const HeaderComponent = () => {
     // We check for the context APIs
 
     const {isUserLoggedIn} = useContext(userContext);
-    const [theme, setTheme] = useState("dark");
+    const [theme, setTheme] = useState(
+        localStorage.getItem("theme") || "dark"
+    );
 
-    const toogleTheme = () => {
+    useEffect(() => {
+        document.documentElement.setAttribute(
+            "data-theme",
+        theme
+        );
+    }, [theme]);
+
+    const toggleTheme = () => {
         changeTheme(theme, setTheme);
     }
 
     return (
-            // NavBar from daisyUI
+            
             <div className="navbar bg-accent shadow-sm text-base-200">
                 <div className="navbar-start">
-                    <p className="text-xl">
+                    <Link to="/" className="text-xl">
                         Reviora
-                    </p>
+                    </Link>
                 </div>
                 <div className="navbar-end">
                     
-                    <button className="mr-4 cursor-pointer" onClick = {toogleTheme}>
+                    {/*Button to change the theme*/}
+                    <button className="mr-4 cursor-pointer" onClick = {toggleTheme}>
                         {
                             theme === "light"?
-                            <LuSun size={25} className="hover:text-info-content"/>:
-                            <LuMoon size={25} className="hover:text-warning"/>
+                            <LuMoon size={25} className="hover:text-info-content"/>:
+                            <LuSun size={25} className="hover:text-warning"/>
                         }
                       
                     </button>
-                    {/*Buttons from daisyUI*/}
-
+                    
+                    {/*Button to navigate*/}
                     {
                         isUserLoggedIn?
                         (
                             <>
-                                <a className="btn btn-ghost text-xl">Notes</a>
-                                <a className="btn btn-ghost text-xl">Revision</a>
+                                <Link to= "/notes" className="btn btn-ghost text-xl">Notes</Link>
+                                <Link to= "/revision" className="btn btn-ghost text-xl">Revision</Link>
                             </>
                         )
                         :

@@ -1,6 +1,5 @@
 // Imports from libraries
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Interal imports
@@ -15,6 +14,7 @@ const SignupComponent = () => {
     const [emailId, setEmailId] = useState("");
     const [password, setPassword] = useState("");
     const [rePassword, setRePassword] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
  
     const [isMessage, setIsMessage] = useState(false);
     const [message, setMessage] = useState("");
@@ -23,12 +23,14 @@ const SignupComponent = () => {
     const navigate = useNavigate()
 
     // Handler to handler the signup button
-    const signUpHandler = () => {
-        signup(firstName, lastName, emailId, password, rePassword, setIsAuthenticated, navigate, setIsMessage, setMessage);
+    const signUpHandler = (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        signup({firstName, lastName, emailId, password, rePassword, setIsAuthenticated, navigate, setIsMessage, setMessage, setIsLoading});
     }
 
     return (
-        <div className="flex justify-center items-center min-h-screen">
+        <form onSubmit={signUpHandler} className="flex justify-center items-center min-h-screen">
             <fieldset className="fieldset bg-accent border-base-300 rounded-box w-xs border p-4">
                 <legend className="fieldset-legend">SignUp</legend>
 
@@ -49,16 +51,21 @@ const SignupComponent = () => {
 
                 {
                     isMessage?
-                    <p>
+                    <p className="text-center text-error">
                         {message}
                     </p>:
                     <>
                     </>
                 }
-
-                <button className="btn btn-ghost mt-4" onClick={signUpHandler}>SignUp</button>
+                    <button type="submit" className="btn btn-ghost mt-4" disabled = {isLoading}>
+                        {
+                            isLoading?
+                            "Signing in..":
+                            "Sign Up"
+                        }   
+                    </button>
             </fieldset>
-        </div>
+        </form>
     )
 
 }

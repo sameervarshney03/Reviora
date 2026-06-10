@@ -1,6 +1,5 @@
 // Imports from libraries
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Internal imports
@@ -11,19 +10,23 @@ const LoginComponent = () => {
 
     // Use of the hooks..
     const [isLoginSuccessful, setIsLoginSuccessful] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
     const [emailId, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const {setIsAuthenticated} = useContext(userContext);
     const navigate = useNavigate();
 
     // Handler for clicking the login button
-    const loginHandler = () => {
-        login(emailId, password, setIsAuthenticated, navigate, setIsLoginSuccessful);
+    const loginHandler = (e) => {
+        e.preventDefault()
+        setIsLoading(true);
+        login({emailId, password, setIsAuthenticated, navigate, setIsLoginSuccessful, setErrorMessage, setIsLoading});
     }
 
     return (
 
-        <div className="flex justify-center items-center min-h-screen">
+        <form className="flex justify-center items-center min-h-screen" onSubmit={loginHandler}>
         <fieldset className="fieldset bg-accent border-base-300 rounded-box w-xs border p-4">
 
             <label className="label text-accent-content">Email</label>
@@ -39,14 +42,21 @@ const LoginComponent = () => {
                 ):
                 (
                     <p className="text-center text-error">
-                        Invalid credentials!
+                        {errorMessage}
                     </p>
                 )
             }
 
-            <button className="btn btn-ghost mt-4" onClick={loginHandler}>Login</button>
+            
+                <button type = "submit" className="btn btn-ghost mt-4" disabled = {isLoading}>
+                {
+                    isLoading?
+                    "logging in..."
+                    :"login"
+                }   
+                </button>
         </fieldset>
-        </div>
+        </form>
     )
 }
 
