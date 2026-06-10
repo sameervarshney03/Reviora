@@ -22,6 +22,22 @@ notesRouter.get("/notes/view", async (req, res) => {
     }
 });
 
+// route to get a particular note
+notesRouter.get("/notes/:noteId", async (req, res) => {
+    try{
+
+        const {noteId} = req.params
+        const note = await Notes.findById(noteId);
+
+        res.json({note});
+    }
+    catch(err){
+        res.status(400).json(
+            {message: "Error getting the notes: " + err.message}
+        )
+    }
+});
+
 // route to add the note
 notesRouter.post("/notes/add", async (req, res) => {
     try{

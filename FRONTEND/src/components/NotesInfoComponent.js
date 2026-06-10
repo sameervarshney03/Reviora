@@ -1,30 +1,56 @@
 // Imports from libraries
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 // Interanl imports
-import notesContext from "../context/notesContext";
 import notesPostPatch from "../util/notesPostPatch";
 import notesDelete from "../util/notesDelete";
 
 const NotesInfoComponent = () => {
 
-    const {notes} = useContext(notesContext);
     const {notesId} = useParams();
 
+    const fetchData = async () => {
+        try{
+            console.log(process.env.REQNOTES_API + `${notesId}`);
+            const req = await fetch(process.env.REQNOTES_API + `${notesId}`,{
+                credentials: "include"
+            });
 
-    const reqNote = notes.find((u) => u._id === notesId);
+            if(!req.ok){
+                throw new Error("Sorry the note data could not be fetched!");
+            }
 
-    console.log(reqNote);
-    const {title, description, createdAt, updatedAt} = reqNote;
+            const json = await req.json();
 
+            const {note} = json;
 
-    const [titleState, setTitleState] = useState(title);
-    const [descriptionState, setDescriptionState] = useState(description);
+            setIsLoading(false);
+            setReqNotes(note);
+            setTitleState(note.title);
+            setDescriptionState(note.description);
+        }
+        catch(err){
+            setIsLoading(false)
+            setIsMainError(true);
+        }
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, [notesId])
+
+    const [titleState, setTitleState] = useState("");
+    const [descriptionState, setDescriptionState] = useState("");
     const [isError, setIsError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const [isMainError, setIsMainError] = useState(false);
+    const [reqNotes, setReqNotes] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
+
+    
 
     const handleTitle = (e) => {
         setTitleState(e.target.value);
@@ -50,6 +76,26 @@ const NotesInfoComponent = () => {
         notesDelete({API, setIsError, setErrorMessage, navigate});
     }
 
+
+    if(isLoading){
+        return (
+            <div className="flex justify-center items-center min-h-screen">
+                <span className="loading loading-dots loading-xl"></span>
+            </div>
+        )
+    }
+
+    if(isMainError){
+        return (
+            <div className="flex justify-center items-center min-h-screen">
+                <p className="text-4xl text-error">
+                    Error getting the Note details. Please refresh the page!
+                </p>
+            </div>
+        )
+    }
+
+    const {createdAt, updatedAt} = reqNotes;
     return (
         <div>
             <div className="navbar bg-transparent">
