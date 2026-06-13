@@ -15,7 +15,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "start": "nodemon app.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
