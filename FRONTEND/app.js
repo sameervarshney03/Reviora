@@ -18,6 +18,7 @@ import ProfileComponent from "./src/components/ProfileComponent";
 import RevisionComponent from "./src/components/RevisionComponent";
 import GapChangeComponent from "./src/components/GapChangeComponent";
 import RevisionInfoComponent from "./src/components/RevisionInfoComponent";
+import AddRevisionComponent from "./src/components/AddRevisionComponent";
 
 // This is the main component
 const App = () => {
@@ -120,6 +121,10 @@ const appRouter = createBrowserRouter([
             {
                 path: "/gapchange",
                 element: <GapChangeComponent />
+            },
+            {
+                path: "/addrevision",
+                element: <AddRevisionComponent />
             }
         ]
     },

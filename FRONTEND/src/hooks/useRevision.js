@@ -1,30 +1,8 @@
 import { useState, useEffect } from "react";
 
 const useRevision = ({setIsLoading, setIsError}) => {
-    const [gaps, setGaps] = useState([]);
     const [reqMaterial, setReqMaterial] = useState([]);
     const [isEmpty, setIsEmpty] = useState(false);
-
-    const getGaps = async() => {
-        try{
-            const res = await fetch(process.env.GAP_API, {
-                credentials: "include"
-            });
-
-            if(!res.ok){
-                throw new Error("Error getting the gap data");
-            }
-
-            const json = await res.json();
-
-            setGaps(json.gaps);
-
-        }
-        catch(err){
-            console.log(err.message);
-            setIsError(true);
-        }
-    }
 
     const getMaterial = async() => {
         try{
@@ -50,24 +28,20 @@ const useRevision = ({setIsLoading, setIsError}) => {
             }
 
             setIsEmpty(bool);
+            setIsLoading(false);
         }
         catch(err){
             console.log(err.message);
             setIsError(true);
+            setIsLoading(false);
         }
     }
 
     useEffect(() => {
-        Promise.all([
-            getGaps(),
-            getMaterial()
-        ]).finally(() => {
-        setIsLoading(false);
-});
-    }, []);
+        getMaterial();
+    }, [])
 
     return {
-        gaps,
         reqMaterial,
         isEmpty
     }

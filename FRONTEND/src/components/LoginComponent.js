@@ -41,7 +41,7 @@ const LoginComponent = () => {
                     <></>
                 ):
                 (
-                    <p className="text-center text-error">
+                    <p className="text-center text-error px-4">
                         {errorMessage}
                     </p>
                 )

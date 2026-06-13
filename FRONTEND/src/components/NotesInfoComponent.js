@@ -89,7 +89,7 @@ const NotesInfoComponent = () => {
     if(isMainError){
         return (
             <div className="flex justify-center items-center min-h-screen">
-                <p className="text-4xl text-error">
+                <p className="text-4xl text-error px-8">
                     Error getting the Note details. Please refresh the page!
                 </p>
             </div>
@@ -132,7 +132,7 @@ const NotesInfoComponent = () => {
 
             {
                 isError?
-                (<p className="text-center text-error">
+                (<p className="text-center text-error px-8">
                     {errorMessage}
                 </p>):
                 (

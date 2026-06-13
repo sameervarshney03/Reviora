@@ -66,7 +66,7 @@ const AddNotesComponent = () => {
             {/*This part is to show the error message*/}
             {
                 isError?
-                (<p className="text-center text-error">
+                (<p className="text-center text-error px-8">
                     {errorMessage}
                 </p>):
                 (

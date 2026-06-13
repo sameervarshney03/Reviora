@@ -70,7 +70,7 @@ const AddRevisionComponent = () => {
             </div>
             {/*This div is for title and description*/}
             <div className="mt-8 px-16 text-base-content">
-                <div className="border-t border-base-content">
+                <div>
                     <p className="mb-2 text-2xl">
                         Add material here:
                     </p>
@@ -82,7 +82,7 @@ const AddRevisionComponent = () => {
             {/*This part is to show the error message*/}
             {
                 isError?
-                (<p className="text-center text-error">
+                (<p className="text-center text-error px-8">
                     {errorMessage}
                 </p>):
                 (

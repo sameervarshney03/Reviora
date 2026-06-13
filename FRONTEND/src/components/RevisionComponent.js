@@ -12,7 +12,7 @@ const RevisionComponent = () => {
     const[isLoading, setIsLoading] = useState(true);
     const[isError, setIsError] = useState(false);
 
-    const {gaps, reqMaterial, isEmpty} = useRevision({setIsLoading, setIsError});
+    const {reqMaterial, isEmpty} = useRevision({setIsLoading, setIsError});
 
 
 
@@ -27,7 +27,7 @@ const RevisionComponent = () => {
     if(isError){
         return (
             <div className="flex justify-center items-center min-h-screen">
-                <p className="text-4xl text-error">
+                <p className="text-4xl text-error px-8">
                     Error getting the Notes. Please refresh the page!
                 </p>
             </div>
@@ -36,10 +36,21 @@ const RevisionComponent = () => {
 
     if(isEmpty){
         return (
-            <div className="flex justify-center items-center min-h-screen">
-                <p className="text-4xl text-warning">
-                    Error getting the Notes. Please refresh the page!
-                </p>
+            <div>
+                <div className="navbar bg-transparent mb-8">
+                    <div className="navbar-start">
+                        <p className="mr-4">Revision</p>
+                    </div>
+                    <div className="navbar-end">
+                        <Link to = "/addrevision" className="btn btn-ghost text-xl">ADD+</Link>
+                        <Link to = "/gapchange" className="btn btn-ghost text-xl">CHANGE GAP</Link>
+                    </div>
+                </div>
+                <div className="flex justify-center items-center min-h-screen">
+                    <p className="text-4xl text-warning px-8">
+                        Hurrey No revision for today!
+                    </p>
+                </div>
             </div>
         )
     }
@@ -51,8 +62,8 @@ const RevisionComponent = () => {
                     <p className="mr-4">Revision</p>
                 </div>
                 <div className="navbar-end">
-                    <Link className="btn btn-ghost text-xl">ADD+</Link>
-                    <Link className="btn btn-ghost text-xl">CHANGE GAP</Link>
+                    <Link to = "/addrevision" className="btn btn-ghost text-xl">ADD+</Link>
+                    <Link to = "/gapchange" className="btn btn-ghost text-xl">CHANGE GAP</Link>
                 </div>
             </div>
 

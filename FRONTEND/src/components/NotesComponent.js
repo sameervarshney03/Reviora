@@ -34,7 +34,7 @@ const NotesComponent = () => {
     if(isError){
         return (
             <div className="flex justify-center items-center min-h-screen">
-                <p className="text-4xl text-error">
+                <p className="text-4xl text-error px-8">
                     Error getting the Notes. Please refresh the page!
                 </p>
             </div>

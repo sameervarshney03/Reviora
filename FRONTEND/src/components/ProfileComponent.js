@@ -86,7 +86,7 @@ const ProfileComponent = () => {
     if(isError){
         return (
             <div className="flex justify-center items-center min-h-screen">
-                <p className="text-4xl text-error">
+                <p className="text-4xl text-error px-8">
                     Error getting the profile data. Please refresh the page!
                 </p>
             </div>
@@ -162,7 +162,7 @@ const ProfileComponent = () => {
 
             {
                 ispostError?
-                (<p className="text-center text-error">
+                (<p className="text-center text-error px-8">
                     There was some Error while saving the data!
                 </p>):
                 (

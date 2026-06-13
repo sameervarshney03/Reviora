@@ -51,7 +51,7 @@ const SignupComponent = () => {
 
                 {
                     isMessage?
-                    <p className="text-center text-error">
+                    <p className="text-center text-error px-4">
                         {message}
                     </p>:
                     <>

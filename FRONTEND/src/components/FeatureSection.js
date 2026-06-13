@@ -6,7 +6,10 @@ const FeatureSection = (props) => {
 
     const {src, alt, title, description, reverse} = props;
     const {note1, note2, note3}  = src;
-    const {notealt1, notealt2, notealt3} = alt;
+    const {rev1, rev2, rev3} = src;
+
+    const {notealt1, notealt2, notealt3} = src;
+    const {revalt1, revalt2, revalt3} = src;
     const eId = reverse?'0':'1';
 
     const revClass = reverse?"hero-content flex-col lg:flex-row-reverse":"hero-content flex-col lg:flex-row";
@@ -17,8 +20,8 @@ const FeatureSection = (props) => {
                         <div className="carousel w-full max-w-3xl rounded-xl shadow-2xl">
                             <div id={"slide1" + eId} className="carousel-item relative w-full max-w-3xl rounded-xl shadow-2xl">
                                 <img
-                                src={note1}
-                                alt={notealt1}
+                                src={note1? note1: rev1}
+                                alt={notealt1? notealt1: revalt1}
                                 className="w-full max-w-3xl rounded-xl shadow-2xl" />
                                 <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
                                 <a href={"#slide3"+eId} className="btn btn-circle">❮</a>
@@ -27,8 +30,8 @@ const FeatureSection = (props) => {
                             </div>
                             <div id={"slide2" + eId} className="carousel-item relative w-full max-w-3xl rounded-xl shadow-2xl">
                                 <img
-                                src={note2}
-                                alt={notealt2}
+                                src={note2? note2: rev2}
+                                alt={notealt2? notealt2: revalt2}
                                 className="w-full max-w-3xl rounded-xl shadow-2xl" />
                                 <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
                                 <a href={"#slide1"+eId} className="btn btn-circle">❮</a>
@@ -37,8 +40,8 @@ const FeatureSection = (props) => {
                             </div>
                             <div id={"slide3" + eId} className="carousel-item relative w-full max-w-3xl rounded-xl shadow-2xl">
                                 <img
-                                src={note3}
-                                alt={notealt3}
+                                src={note3? note3: rev3}
+                                alt={notealt3? notealt3: revalt3}
                                 className="w-full max-w-3xl rounded-xl shadow-2xl" />
                                 <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
                                 <a href={"#slide2"+eId} className="btn btn-circle">❮</a>

@@ -46,14 +46,15 @@ const RevisionInfoComponent = () => {
     if(isError){
         return (
             <div className="flex justify-center items-center min-h-screen">
-                <p className="text-4xl text-error">
+                <p className="text-4xl text-error px-8">
                     Error getting the Data. Please refresh the page!
                 </p>
             </div>
         )
     }
 
-    const {createdAt, material} = revisionMaterial
+    console.log(revisionMaterial);
+    const {createdAt, material} = revisionMaterial.rev;
 
     return (
             <div className="mt-8 px-16 text-base-content">
@@ -65,7 +66,7 @@ const RevisionInfoComponent = () => {
                         Material:
                     </p>
                     <div className="leading-loose">
-                        <div className="w-full bg-transparent h-128 resize-none"> {material} </div>
+                        <div className="w-full bg-transparent h-128 resize-none whitespace-pre-line"> {material} </div>
                     </div>
                 </div>
             </div>

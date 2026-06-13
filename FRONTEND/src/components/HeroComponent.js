@@ -11,6 +11,9 @@ import heroImg from "url:../../public/images/hero.png";
 import note1 from "url:../../public/images/note1.png";
 import note2 from "url:../../public/images/note2.png";
 import note3 from "url:../../public/images/note3.png";
+import rev1 from "url:../../public/images/rev1.png";
+import rev2 from "url:../../public/images/rev2.png";
+import rev3 from "url:../../public/images/rev3.png";
 
 const HeroComponent = () => {
 
@@ -67,7 +70,7 @@ const HeroComponent = () => {
             
             <FeatureSection src = {{note1, note2, note3}} alt = {{notealt1: "note1", notealt2: "note2", notealt3: "note3"}} title = "Notes" description = "The is the description of the notes component" reverse = {false}/>
             
-            <FeatureSection src = {{note1, note2, note3}} alt = {{notealt1: "note1", notealt2: "note2", notealt3: "note3"}} title = "Revision" description = "The is the description of the revision component" reverse = {true}/>
+            <FeatureSection src = {{rev1, rev2, rev3}} alt = {{revalt1: "rev1", revalt2: "rev2", revalt3: "rev3"}} title = "Revision" description = "The is the description of the revision component" reverse = {true}/>
             
             {/*Heading to tell the working of hero section*/}
             <div className="bg-base-100 py-12">
