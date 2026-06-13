@@ -173,7 +173,19 @@ JWT_SECRET=
 ### Frontend
 
 ```env
-API_BASE_URL=
+VERIFY_API =
+LOGIN_API =
+SIGNUP_API =
+GETNOTES_API =
+POSTNOTES_API =
+PATCHNOTES_API =
+DELETENOTES_API =
+REQNOTES_API =
+GETPROFILE_API =
+POSTPROFILE_API =
+GAP_API =
+REVISION_API =
+LOGOUT_API =
 ```
 
 ---
@@ -217,6 +229,23 @@ POST   /revision
 GET    /revision/:revId
 GET    /revision/revdata/gap
 PATCH  /revision/gap
+```
+
+### Notes
+
+```http
+GET    /notes/view
+GET   /notes/:noteId
+POST   /notes/add
+PATCH    /notes/:noteId
+DELETE  /notes/:noteId
+```
+
+### Profile
+
+```http
+GET    /profile/view
+POST   /profile/edit
 ```
 
 ---
