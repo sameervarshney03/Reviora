@@ -14,7 +14,7 @@ const cors = require("cors");
 // cors middleware
 app.use(
     cors({
-        origin: "http://localhost:1234",
+        origin: "https://reviora.onrender.com",
         credentials: true,
         methods: ["GET", "POST", "PATCH", "DELETE"]
     })
