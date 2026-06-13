@@ -78,8 +78,8 @@ authRouter.post("/login", async (req, res) => {
 
         res.cookie("token", token, {
             httpOnly: true,
-            secure: false,
-            sameSite: "strict"
+            secure: true,
+            sameSite: "none"
         });
         res.json({
             message: "User logged in successfully!"
