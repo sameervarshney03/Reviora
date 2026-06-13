@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 // Interanl imports
 import notesPostPatch from "../util/notesPostPatch";
 
+// This component handles adding of the notes
 const AddNotesComponent = () => {
 
     const [titleState, setTitleState] = useState("");
@@ -30,6 +31,7 @@ const AddNotesComponent = () => {
     }
     return (
         <div>
+            {/*This div contains the main button*/}
             <div className="navbar bg-transparent">
                 <div className="navbar-start">
                     <></>
@@ -44,6 +46,7 @@ const AddNotesComponent = () => {
                     </button>
                 </div>
             </div>
+            {/*This div is for title and description*/}
             <div className="mt-8 px-16 text-base-content">
                 <div className="py-4 my-2">
                     <p className="mb-2 text-2xl">
@@ -60,6 +63,7 @@ const AddNotesComponent = () => {
                     </div>
                 </div>
             </div>
+            {/*This part is to show the error message*/}
             {
                 isError?
                 (<p className="text-center text-error">

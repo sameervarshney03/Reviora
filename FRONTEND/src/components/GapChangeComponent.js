@@ -134,3 +134,5 @@ const GapChangeComponent = () => {
         </form>
     )
 }
+
+export default GapChangeComponent;

@@ -6,6 +6,11 @@ import {Link} from "react-router-dom";
 import userContext from "../context/userContext";
 import FeatureSection from "./FeatureSection";
 
+// Image imports
+import heroImg from "url:../../public/images/hero.png";
+import note1 from "url:../../public/images/note1.png";
+import note2 from "url:../../public/images/note2.png";
+import note3 from "url:../../public/images/note3.png";
 
 const HeroComponent = () => {
 
@@ -23,9 +28,9 @@ const HeroComponent = () => {
             <div className="hero bg-base-200 min-h-screen">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <img
-                    src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
+                    src={heroImg}
                     alt="Reviora Hero"
-                    className="max-w-sm rounded-lg shadow-2xl"
+                    className="max-w-sm rounded-lg shadow-2xl w-full"
                     />
                     <div>
                     <h1 className="text-5xl font-bold">Reviora</h1>
@@ -60,9 +65,9 @@ const HeroComponent = () => {
                 </h2>
             </div>
             
-            <FeatureSection src = "https://tse3.mm.bing.net/th/id/OIP.BrRuH4bTHNt9xF6Z13hKAwHaDt?rs=1&pid=ImgDetMain&o=7&rm=3" alt = "Notes Component" title = "Notes" description = "The is the description of the notes component" reverse = {false}/>
+            <FeatureSection src = {{note1, note2, note3}} alt = {{notealt1: "note1", notealt2: "note2", notealt3: "note3"}} title = "Notes" description = "The is the description of the notes component" reverse = {false}/>
             
-            <FeatureSection src = "https://tse3.mm.bing.net/th/id/OIP.BrRuH4bTHNt9xF6Z13hKAwHaDt?rs=1&pid=ImgDetMain&o=7&rm=3" alt = "Revision Component" title = "Revision" description = "The is the description of the revision component" reverse = {true}/>
+            <FeatureSection src = {{note1, note2, note3}} alt = {{notealt1: "note1", notealt2: "note2", notealt3: "note3"}} title = "Revision" description = "The is the description of the revision component" reverse = {true}/>
             
             {/*Heading to tell the working of hero section*/}
             <div className="bg-base-100 py-12">
@@ -75,9 +80,9 @@ const HeroComponent = () => {
             <div className="flex justify-center bg-base-200 p-16">
                 <ul className="steps steps-vertical">
                     <li className="step step-primary">Create Notes</li>
-                    <li className="step step-primary">Reviora Tracks Your Learning</li>
-                    <li className="step">Spaced Repetition Schedules Revisions</li>
-                    <li className="step">Build Long-Term Retention</li>
+                    <li className="step step-primary">Reviora Tracks Learning</li>
+                    <li className="step">Spaced Repetition </li>
+                    <li className="step">Long-Term Retention</li>
                 </ul>
             </div>
 

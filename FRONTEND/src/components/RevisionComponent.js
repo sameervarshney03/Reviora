@@ -69,10 +69,7 @@ const RevisionComponent = () => {
                     ))
                 }
             </div>
-
         </div>
-
-
     )
 };
 

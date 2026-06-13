@@ -12,7 +12,7 @@ const CardComponent = (props) => {
             <div className="card-body">
             <p>created at: {date.slice(0,10)}</p>
             <h2 className="card-title">{title}</h2>
-            <p>{description.slice(0,100)}...</p>
+            <p className="min-h-[20vh]">{description.slice(0,75)}...</p>
             <div className="card-actions justify-end">
             </div>
         </div>

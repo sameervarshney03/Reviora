@@ -1,3 +1,5 @@
+// Utility function to handle the notes deletion
+
 const notesDelete = async ({API, setIsError, setErrorMessage, navigate}) => {
     try{
         const res = await fetch(API,{
@@ -16,9 +18,6 @@ const notesDelete = async ({API, setIsError, setErrorMessage, navigate}) => {
         setIsError(true);
         setErrorMessage("Error deleting the message!");
     }
-
-
-
 }
 
 export default notesDelete;

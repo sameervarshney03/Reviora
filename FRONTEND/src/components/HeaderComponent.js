@@ -1,20 +1,23 @@
 // Import from libraries
 import { useContext, useState, useEffect} from "react";
 import {LuSun, LuMoon} from "react-icons/lu";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 // Internal Imports
 import changeTheme from "../util/changeTheme";
 import userContext from "../context/userContext";
 
+// Image imports
+import logoImg from "url:../../public/images/logo.png"
 
 const HeaderComponent = () => {
     // We check for the context APIs
 
-    const {isUserLoggedIn} = useContext(userContext);
+    const {isUserLoggedIn, setIsAuthenticated} = useContext(userContext);
     const [theme, setTheme] = useState(
         localStorage.getItem("theme") || "dark"
     );
+    const navigate = useNavigate();
 
     useEffect(() => {
         document.documentElement.setAttribute(
@@ -25,6 +28,28 @@ const HeaderComponent = () => {
 
     const toggleTheme = () => {
         changeTheme(theme, setTheme);
+    }
+
+    const logout = async() => {
+        try{
+            await fetch(process.env.LOGOUT_API, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                "Content-Type": "application/json"
+                }
+            })
+
+            setIsAuthenticated(false);
+            navigate("/");
+        }
+        catch(err){
+            console.log(err.message)
+        }
+    }
+
+    const handleLogout = () => {
+        logout();
     }
 
     return (
@@ -52,8 +77,24 @@ const HeaderComponent = () => {
                         isUserLoggedIn?
                         (
                             <>
-                                <Link to= "/notes" className="btn btn-ghost text-xl">Notes</Link>
-                                <Link to= "/revision" className="btn btn-ghost text-xl">Revision</Link>
+                                <div className="dropdown dropdown-end">
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                    <img
+                                        alt="Tailwind CSS Navbar component"
+                                        src={logoImg} />
+                                    </div>
+                                </div>
+                                <ul
+                                    tabIndex="-1"
+                                    className="menu menu-sm dropdown-content bg-base-100 text-base-content rounded-box z-1 mt-3 w-52 p-2 shadow">
+                                    
+                                    <li><Link to = "/profile">Profile</Link ></li>
+                                    <li><Link to = "/notes">Notes</Link ></li>
+                                    <li><Link to = "/revision">Revision</Link ></li>
+                                    <li><a onClick={handleLogout}>Logout</a></li>
+                                </ul>
+                                </div>
                             </>
                         )
                         :

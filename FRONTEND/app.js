@@ -15,6 +15,9 @@ import notesContext from "./src/context/notesContext";
 import NotesInfoComponent from "./src/components/NotesInfoComponent";
 import AddNotesComponent from "./src/components/AddNotesComponent";
 import ProfileComponent from "./src/components/ProfileComponent";
+import RevisionComponent from "./src/components/RevisionComponent";
+import GapChangeComponent from "./src/components/GapChangeComponent";
+import RevisionInfoComponent from "./src/components/RevisionInfoComponent";
 
 // This is the main component
 const App = () => {
@@ -105,6 +108,18 @@ const appRouter = createBrowserRouter([
             {
                 path: "/profile",
                 element: <ProfileComponent />
+            },
+            {
+                path: "/revision",
+                element: <RevisionComponent />
+            },
+            {
+                path: "/revision/:revId",
+                element: <RevisionInfoComponent />
+            },
+            {
+                path: "/gapchange",
+                element: <GapChangeComponent />
             }
         ]
     },
