@@ -26,7 +26,6 @@
     "daisyui": "^5.5.20",
     "parcel": "^2.16.4"
   },
-  
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.0",
     "dotenv": "^17.4.2",
