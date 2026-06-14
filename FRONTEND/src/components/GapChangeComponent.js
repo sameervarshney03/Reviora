@@ -116,7 +116,7 @@ const GapChangeComponent = () => {
                     isParaError?
                     (
                         <div>
-                            <p className="text-center text-warning px-4">
+                            <p className="text-center text-error px-4">
                                 Sorry error updating the gaps! Please try again
                             </p>
                         </div>

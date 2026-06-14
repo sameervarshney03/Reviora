@@ -48,7 +48,7 @@ const RevisionComponent = () => {
                         <Link to = "/gapchange" className="btn btn-ghost text-xl">CHANGE GAP</Link>
                     </div>
                 </div>
-                <div className="flex justify-center items-center min-h-screen">
+                <div className="flex justify-center items-center min-h-[calc(100vh-128px)]">
                     <p className="text-4xl text-warning px-8">
                         Hurrey No revision for today!
                     </p>
